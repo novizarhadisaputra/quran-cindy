@@ -1,5 +1,5 @@
 
-# Quran App
+# Quran Cindy
 
 Quran Cindy adalah merupakan sebuah alquran berbasis web. Web application ini menggunakan bahasa pemrograman PHP dengan framework Laravel
 
