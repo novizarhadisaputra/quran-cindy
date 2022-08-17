@@ -1,0 +1,490 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Quran cindy API Documentation",
+    "description": "Quran API based on Kementerian Agama Republik Indonesia",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://quran-cindy.proyekku.id/api",
+      "variables": {}
+    },
+    {
+      "url": "https://quran-cindy.proyekku.id/api",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/surat": {
+      "get": {
+        "tags": [
+          "Surat"
+        ],
+        "summary": "List",
+        "operationId": "List",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Qty data per page",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [],
+        "servers": [
+          {
+            "url": "https://quran-cindy.proyekku.id/api",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/surat/detail": {
+      "get": {
+        "tags": [
+          "Surat"
+        ],
+        "summary": "Detail Surat",
+        "operationId": "DetailSurat",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID Surat",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "f0daf7f0-8de0-4b90-885a-68f2aaf9725e"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://quran-cindy.proyekku.id/api",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/ayat": {
+      "get": {
+        "tags": [
+          "Ayat"
+        ],
+        "summary": "List",
+        "operationId": "GetList",
+        "parameters": [
+          {
+            "name": "surat_id",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Qty data per page",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://quran-cindy.proyekku.id/api",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/ayat/detail": {
+      "get": {
+        "tags": [
+          "Ayat"
+        ],
+        "summary": "Detail Surat",
+        "operationId": "GetDetailSurat",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "ID Ayat",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "d385f282-83a7-4d4c-ba83-74b653997f64"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://quran-cindy.proyekku.id/api",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/tafsir/detail": {
+      "get": {
+        "tags": [
+          "Tafsir"
+        ],
+        "summary": "Detail Tafsir",
+        "operationId": "DetailTafsir",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "d385f282-83a7-4d4c-ba83-74b653997f64"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://quran-cindy.proyekku.id/api",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/tafsir": {
+      "get": {
+        "tags": [
+          "Tafsir"
+        ],
+        "summary": "List",
+        "operationId": "GetList1",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://quran-cindy.proyekku.id/api",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login",
+        "operationId": "Login",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "novizarhadisaputra@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "Ca210399"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://quran-cindy.proyekku.id/api",
+            "variables": {}
+          }
+        ]
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register",
+        "operationId": "Register",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "syboretun@vomoto.com"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "syboretun@vomoto.com"
+            }
+          },
+          {
+            "name": "password_confirmation",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "example": "syboretun@vomoto.com"
+            }
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "example": "id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://quran-cindy.proyekku.id/api",
+            "variables": {}
+          }
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Surat"
+    },
+    {
+      "name": "Ayat"
+    },
+    {
+      "name": "Tafsir"
+    },
+    {
+      "name": "Auth"
+    }
+  ]
+}
