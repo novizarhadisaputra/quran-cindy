@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             SuratSeeder::class,
             AyatSeeder::class,
             TafsirSeeder::class,
-            FileSeeder::class
+            FileSeeder::class,
+            SlugSeeder::class
         ]);
     }
 }
