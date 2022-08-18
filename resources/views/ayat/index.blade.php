@@ -105,7 +105,7 @@
                                 <div class="col-9 col-md-10">
                                     <div class="row d-flex justify-content-between">
                                         <div class="align-self-center">
-                                            <div class="text-end"><label class="fs-2 text-arab mb-3">${element.text}</label></div>
+                                            <div class="text-end"><label class="fs-2 text-arab my-3">${element.text}</label></div>
                                             <div class="text-end"><label class="fs-6">${element.text_translate}</label>
                                             </div>
                                         </div>
