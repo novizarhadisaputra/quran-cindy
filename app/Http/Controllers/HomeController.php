@@ -8,13 +8,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    protected $surat;
-    protected $ayat;
+    protected $home;
 
     public function __construct()
     {
-        $this->surat = app()->make('repository.surat');
-        $this->ayat = app()->make('repository.ayat');
+        $this->home = app()->make('repository.home');
     }
 
     /**
@@ -22,20 +20,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(IndexSuratRequest $request)
+    public function index(Request $request)
     {
         try {
-            $response = $this->surat->index($request);
-            return $response;
-        } catch (Exception $e) {
-            throw $e;
-        }
-    }
-
-    public function detail(Request $request, $slug)
-    {
-        try {
-            $response = $this->ayat->index($request, $slug);
+            $response = $this->home->index($request);
             return $response;
         } catch (Exception $e) {
             throw $e;

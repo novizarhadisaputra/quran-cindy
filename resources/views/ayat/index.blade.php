@@ -14,11 +14,14 @@
         <nav class="float-end" id="nav-pagination" style="display:none">
             <ul class="pagination">
                 @if ($prev)
-                    <li class="page-item"><a class="page-link" href="{{ route('home') . '/' . $prev->slug }}">Previous</a>
+                    <li class="page-item"><a class="page-link"
+                            href="{{ route('surat') . '/' . $prev->slug }}"><i class="bi bi-chevron-left"></i> {{ $prev->name }}</a>
                     </li>
                 @endif
                 @if ($next)
-                    <li class="page-item"><a class="page-link" href="{{ route('home') . '/' . $next->slug }}">Next</a></li>
+                    <li class="page-item"><a class="page-link"
+                            href="{{ route('surat') . '/' . $next->slug }}">{{ $next->name }} <i
+                                class="bi bi-chevron-right"></i></a></li>
                 @endif
             </ul>
         </nav>
@@ -149,10 +152,6 @@
             });
             spinner.style.display = 'none';
             navPagination.style.display = 'block';
-        }
-
-        function moveDetail(id, slug) {
-            location.href = `{{ route('home') }}/${id}/${slug}`;
         }
         </script>
 @endsection

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AdzanController;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\Api\AyatController;
 use App\Http\Controllers\Api\SuratController;
@@ -31,24 +32,29 @@ Route::name('api.')->group(function () {
     });
 
     // Route::middleware(['auth:api'])->group(function () {
-        Route::prefix('auth')->name('auth.')->group(function () {
-            Route::post('logout', [AuthController::class, 'logout']);
-        });
+    Route::prefix('auth')->name('auth.')->group(function () {
+        Route::post('logout', [AuthController::class, 'logout']);
+    });
 
-        Route::resource('surat', SuratController::class);
-        Route::prefix('surat')->name('surat.')->group(function () {
-            Route::get('detail', [SuratController::class, 'show'])->name('detail');
-        });
+    Route::resource('surat', SuratController::class);
+    Route::prefix('surat')->name('surat.')->group(function () {
+        Route::get('detail', [SuratController::class, 'show'])->name('detail');
+    });
 
-        Route::resource('ayat', AyatController::class);
-        Route::prefix('ayat')->name('ayat.')->group(function () {
-            Route::get('detail', [AyatController::class, 'show'])->name('detail');
-        });
+    Route::resource('ayat', AyatController::class);
+    Route::prefix('ayat')->name('ayat.')->group(function () {
+        Route::get('detail', [AyatController::class, 'show'])->name('detail');
+    });
 
-        Route::resource('tafsir', TafsirController::class);
-        Route::prefix('tafsir')->name('tafsir.')->group(function () {
-            Route::get('detail', [TafsirController::class, 'show'])->name('detail');
-        });
+    Route::resource('tafsir', TafsirController::class);
+    Route::prefix('tafsir')->name('tafsir.')->group(function () {
+        Route::get('detail', [TafsirController::class, 'show'])->name('detail');
+    });
+
+    Route::resource('adzan', AdzanController::class);
+    Route::prefix('adzan')->name('adzan.')->group(function () {
+        Route::get('detail', [AdzanController::class, 'show'])->name('detail');
+    });
     // });
 
 });

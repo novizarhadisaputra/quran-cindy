@@ -103,20 +103,10 @@
             divs.forEach((element, index) => {
                 element.addEventListener('click', function(){
                     let slug = element.getAttribute('slug');
-                    location.href = `{{ route('home') }}/${slug}`;
+                    location.href = `{{ route('surat') }}/${slug}`;
                 });
             });
             spinner.style.display = 'none';
-        }
-
-
-        function renderList() {
-            let datalistOptions = document.getElementById('dataList');
-            console.log('datalistOptions', datalistOptions)
-        }
-
-        function moveDetail(id, slug) {
-            location.href = `{{ route('home') }}/${id}/${slug}`;
         }
     </script>
 @endsection
