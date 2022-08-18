@@ -18,7 +18,6 @@
     <script type="module">
         import { Autocomplete } from "{{ asset('js/autocomplete.js') }}";
 
-        let spinner = document.getElementById('spinner');
         let field = document.getElementById('autoComplete');
         const ac = new Autocomplete(field, {
             data: [],

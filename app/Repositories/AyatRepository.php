@@ -25,8 +25,10 @@ class AyatRepository
 
         try {
             $id = $surat->id;
+            $prev = $this->surat->where('order', $surat->order - 1)->first();
+            $next = $this->surat->where('order', $surat->order + 1)->first();
             $ayats = $this->ayat->where('surat_id', $id)->search($request->search)->get();
-            return view('ayat.index', compact('ayats', 'id'));
+            return view('ayat.index', compact('ayats', 'id', 'prev', 'next'));
         } catch (Exception $e) {
             throw $e;
         }

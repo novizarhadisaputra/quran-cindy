@@ -9,8 +9,19 @@
     </div>
 
     <div class="container">
-        <div class="row d-flex justify-content-between" id="list-surat">
+        <div class="row d-flex justify-content-between" id="list-ayat">
         </div>
+        <nav class="float-end" id="nav-pagination" style="display:none">
+            <ul class="pagination">
+                @if ($prev)
+                    <li class="page-item"><a class="page-link" href="{{ route('home') . '/' . $prev->slug }}">Previous</a>
+                    </li>
+                @endif
+                @if ($next)
+                    <li class="page-item"><a class="page-link" href="{{ route('home') . '/' . $next->slug }}">Next</a></li>
+                @endif
+            </ul>
+        </nav>
     </div>
 @endsection
 @section('scripts')
@@ -18,6 +29,8 @@
         import { Autocomplete } from "{{ asset('js/autocomplete.js') }}";
 
         let field = document.getElementById('autoComplete');
+        let navPagination = document.getElementById('nav-pagination');
+
         const ac = new Autocomplete(field, {
             data: [],
             maximumItems: 5,
@@ -126,7 +139,7 @@
                     </div>
                 </div>`;
             });
-            document.getElementById('list-surat').innerHTML = html;
+            document.getElementById('list-ayat').innerHTML = html;
             let divs = document.querySelectorAll('.btn-audio');
             divs.forEach((element, index) => {
                 element.addEventListener('click', function(){
@@ -135,6 +148,7 @@
                 });
             });
             spinner.style.display = 'none';
+            navPagination.style.display = 'block';
         }
 
         function moveDetail(id, slug) {
