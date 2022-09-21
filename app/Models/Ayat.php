@@ -35,6 +35,16 @@ class Ayat extends Model
     }
 
     /**
+     * Get the juz that owns the Ayat
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function juz(): BelongsTo
+    {
+        return $this->belongsTo(Juz::class, 'juz_id');
+    }
+
+    /**
      * Get the surat that owns the Ayat
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
