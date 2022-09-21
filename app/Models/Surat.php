@@ -23,6 +23,7 @@ class Surat extends Model
         'text',
         'text_translate',
         'surat_category_id',
+        'order'
     ];
 
     public function ayats(): HasMany
@@ -31,7 +32,7 @@ class Surat extends Model
     }
 
     /**
-     * Get the user that owns the Surat
+     * Get the category that owns the Surat
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

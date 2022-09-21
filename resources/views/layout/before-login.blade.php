@@ -27,7 +27,7 @@
         font-family: "Montserrat-Regular"
     }
     .text-arab {
-        font-family: "LPMQ"
+        font-family: "LPMQ",
     }
 </style>
 

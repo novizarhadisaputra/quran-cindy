@@ -2,43 +2,29 @@
 
 namespace App\Http\Transformers;
 
-use Illuminate\Http\JsonResponse;
+use stdClass;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class ResponseTransformer
 {
-    public function toJson($code = null, $message = null, $data = null, $custom_data = null)
+    public function toJson($statusCode = null, $message = null, $collection = null, $data = null)
     {
-        $site_setting = app('request')->get('site_setting');
+        $result = new stdClass();
+        $result->status = $statusCode;
+        $result->message = $message;
+        $result->data = $collection;
 
-        $response = [
-            'status' => $code,
-            'message' => $message,
-        ];
-
-        if ($data) {
-            if (method_exists($data, 'perPage')) {
-                $prevUrl = $data->previousPageUrl();
-                $nextUrl = $data->nextPageUrl();
-                $perPage = '&per_page=' . $data->perPage();
-
-                $response['data'] = $data->toArray()['data'];
-                $response['pagination'] = [
-                    'current_page' => $data->currentPage(),
-                    'total' => $data->total(),
-                    'per_page' => (int) $data->perPage(),
-                    'last_page' => $data->lastPage(),
-                    'next_page_url' => $nextUrl != null ? $nextUrl . $perPage : $nextUrl,
-                    'prev_page_url' => $prevUrl != null ? $prevUrl . $perPage : $prevUrl,
-                    'from' => $data->firstItem(),
-                    'to' => $data->lastItem(),
-                ];
-
-                $data = $response['data'];
-            }
+        if ($collection != null && $collection instanceof LengthAwarePaginator) {
+            $result->data = $data ?? $collection->items();
+            $result->pagination = new stdClass;
+            $result->pagination->perPage = $collection->perPage();
+            $result->pagination->currentPage = $collection->currentPage();
+            $result->pagination->lastPage = $collection->lastPage();
+            $result->pagination->previousPageUrl = $collection->previousPageUrl();
+            $result->pagination->nextPageUrl = $collection->nextPageUrl();
+            $result->pagination->total = $collection->total();
         }
 
-        $response['data'] = $custom_data === null ? $data : $custom_data;
-
-        return new JsonResponse($response, $code, []);
+        return response()->json($result, $statusCode);
     }
 }

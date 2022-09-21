@@ -37,14 +37,11 @@
         loadDataList();
 
         document.getElementById("autoComplete").onkeyup = function() {
-            var value = document.getElementById("autoComplete").value;
-            loadDataList(value);
+            let value = document.getElementById("autoComplete").value;
+            if (value == ''){
+                loadDataList(value);
+            }
         };
-
-        async function changeList() {
-            let inputValue = document.getElementById('autoComplete').value;
-            loadDataList(inputValue);
-        }
 
         async function loadDataList(inputValue = '') {
             let params = new URLSearchParams({
@@ -74,7 +71,7 @@
             let html = '';
             data.forEach((element, index) => {
                 html = `${html}
-                <div class="animate__animated animate__fadeInLeft col-12 col-lg-4 mb-3 card-surat" slug=${element.slug}>
+                <div class="animate__animated animate__fadeInLeft col-12 col-md-6 col-lg-6 col-xl-4 mb-3 card-surat" slug=${element.slug}>
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -87,7 +84,7 @@
                                             <label>${element.name}  </label>
                                         </div>
                                         <div class="col align-self-center">
-                                            <div class="text-end"><label class="fs-2 text-arab mb-2">${element.text}</label></div>
+                                            <div class="text-end"><label class="fs-1 text-arab lh-lg mb-2">${element.text}</label></div>
                                             <div class="text-end"><label class="fs-6">${element.count_ayat} Ayat</label>
                                             </div>
                                         </div>

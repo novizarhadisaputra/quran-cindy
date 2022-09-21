@@ -9,18 +9,18 @@ class TafsirTransformer
 
     public function all($code, $message, $models)
     {
-        $customeData = [];
+        $data = [];
 
         foreach ($models as $model) {
-            $customeData[] = $this->generateItem($model);
+            $data[] = $this->generateItem($model);
         }
-        return (new ResponseTransformer)->toJson($code, $message, $models, $customeData);
+        return (new ResponseTransformer)->toJson($code, $message, $models, $data);
     }
 
     public function detail($code, $message, $model)
     {
-        $customeData = $this->generateItem($model);
-        return (new ResponseTransformer)->toJson($code, $message, $model, $customeData);
+        $data = $this->generateItem($model);
+        return (new ResponseTransformer)->toJson($code, $message, $model, $data);
     }
 
     public function generateItem($model)

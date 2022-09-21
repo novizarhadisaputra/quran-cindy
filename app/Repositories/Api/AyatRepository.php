@@ -2,8 +2,9 @@
 
 namespace App\Repositories\Api;
 
-use App\Models\Ayat;
 use Exception;
+use App\Models\Ayat;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class AyatRepository
 {
@@ -18,9 +19,10 @@ class AyatRepository
     {
         try {
             $allAyat = $this->ayat
-                ->where('surat_id', $request->surat_id)
                 ->search($request->search)
+                ->where('surat_id', $request->surat_id)
                 ->customPaginate($request);
+
             return $allAyat;
         } catch (Exception $e) {
             throw $e;

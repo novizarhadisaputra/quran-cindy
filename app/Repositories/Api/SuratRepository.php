@@ -17,7 +17,9 @@ class SuratRepository
     public function index($request)
     {
         try {
-            $allSurat = $this->surat->search($request->search)->customPaginate($request);
+            $allSurat = $this->surat
+                ->search($request->search)
+                ->customPaginate($request);
             return $allSurat;
         } catch (Exception $e) {
             throw $e;

@@ -10,23 +10,18 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Ayat extends Model
+class Juz extends Model
 {
     use QueryTrait, HasFactory;
 
-    protected $table = 'ayats';
+    protected $table = 'juzes';
     protected $keyType = 'string';
     protected $primaryKey = 'id';
 
     protected $fillable = [
         'id',
-        'text',
-        'text_translate',
-        'text_latin',
-        'text_notes',
-        'surat_id',
-        'juz_id',
-        'order'
+        'order',
+        'count'
     ];
 
     public function tafsir(): HasOne

@@ -14,8 +14,8 @@
         <nav class="float-end" id="nav-pagination" style="display:none">
             <ul class="pagination">
                 @if ($prev)
-                    <li class="page-item"><a class="page-link"
-                            href="{{ route('surat') . '/' . $prev->slug }}"><i class="bi bi-chevron-left"></i> {{ $prev->name }}</a>
+                    <li class="page-item"><a class="page-link" href="{{ route('surat') . '/' . $prev->slug }}"><i
+                                class="bi bi-chevron-left"></i> {{ $prev->name }}</a>
                     </li>
                 @endif
                 @if ($next)
@@ -52,15 +52,11 @@
         loadDataList();
 
         document.getElementById("autoComplete").onkeyup = function() {
-            var value = document.getElementById("autoComplete").value;
-            loadDataList(value);
+            let value = document.getElementById("autoComplete").value;
+            if (value == ''){
+                loadDataList(value);
+            }
         };
-
-        async function changeList() {
-            let inputValue = document.getElementById('autoComplete').value;
-            console.log('inputValue', inputValue);
-            loadDataList(inputValue);
-        }
 
         async function loadDataList(inputValue = '') {
             let params = new URLSearchParams({
@@ -108,7 +104,7 @@
                                 <div class="col-9 col-md-10">
                                     <div class="row d-flex justify-content-between">
                                         <div class="align-self-center">
-                                            <div class="text-end"><label class="fs-2 text-arab my-3">${element.text}</label></div>
+                                            <div class="text-end"><label class="fs-1 text-arab lh-lg my-3">${element.text}</label></div>
                                             <div class="text-end"><label class="fs-6">${element.text_translate}</label>
                                             </div>
                                         </div>

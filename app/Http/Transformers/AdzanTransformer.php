@@ -11,7 +11,7 @@ class AdzanTransformer
 
     public function all($code, $message, $models)
     {
-        $customeData = [];
+        $data = [];
 
         foreach ($models as $model) {
             $customeData[] = $this->generateItem($model);

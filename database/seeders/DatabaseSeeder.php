@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             AyatSeeder::class,
             TafsirSeeder::class,
             FileSeeder::class,
-            SlugSeeder::class
+            SlugSeeder::class,
+            TextLatinSeeder::class
         ]);
     }
 }
