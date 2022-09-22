@@ -16,7 +16,7 @@ class AdzanTransformer
         foreach ($models as $model) {
             $customeData[] = $this->generateItem($model);
         }
-        return (new ResponseTransformer)->toJson($code, $message, $models, $customeData);
+        return (new ResponseTransformer)->toJson($code, $message, $customeData);
     }
 
     public function detail($code, $message, $model)
@@ -28,7 +28,14 @@ class AdzanTransformer
     public function generateItem($model)
     {
         $tmp = new stdClass();
-        $tmp->timings = $model->timings;
+        $tmp->timings = null;
+        if ($model->timings) {
+            $tmp->timings = new stdClass;
+            foreach ($model->timings as $key => $value) {
+                $data = explode(' ', $value);
+                $tmp->timings->{$key} = $data[0];
+            }
+        }
         $tmp->active = $model->date->gregorian->date === date('d-m-Y') ? true : false;
         $tmp->date = (object) [
             'masehi' => (object) [

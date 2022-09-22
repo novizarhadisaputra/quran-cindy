@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Repositories\Api\AdzanRepository as ApiAdzanRepository;
+
+use App\Repositories\Api\TomTomRepository as ApiTomTomRepository;
 use App\Repositories\Api\AuthRepository as ApiAuthRepository;
 use App\Repositories\Api\AyatRepository as ApiAyatRepository;
 use App\Repositories\Api\SuratRepository as ApiSuratRepository;
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('repository.api.ayat', ApiAyatRepository::class);
         $this->app->bind('repository.api.tafsir', ApiTafsirRepository::class);
         $this->app->bind('repository.api.adzan', ApiAdzanRepository::class);
+        $this->app->bind('repository.api.tomtom', ApiTomTomRepository::class);
 
         $this->app->bind('repository.surat', SuratRepository::class);
         $this->app->bind('repository.ayat', AyatRepository::class);

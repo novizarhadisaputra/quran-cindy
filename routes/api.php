@@ -5,6 +5,7 @@ use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\Api\AyatController;
 use App\Http\Controllers\Api\SuratController;
 use App\Http\Controllers\Api\TafsirController;
+use App\Http\Controllers\Api\TomTomController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,10 @@ Route::name('api.')->group(function () {
     // Route::middleware(['auth:api'])->group(function () {
     Route::prefix('auth')->name('auth.')->group(function () {
         Route::post('logout', [AuthController::class, 'logout']);
+    });
+
+    Route::prefix('location')->name('auth.')->group(function () {
+        Route::get('address', [TomTomController::class, 'getAddress']);
     });
 
     Route::resource('surat', SuratController::class);

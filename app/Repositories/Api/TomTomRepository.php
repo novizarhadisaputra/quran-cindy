@@ -5,27 +5,25 @@ namespace App\Repositories\Api;
 use Exception;
 use Illuminate\Support\Facades\Http;
 
-class AdzanRepository
+class TomTomRepository
 {
     public function __construct()
     {
     }
 
-    public function index($request)
+    public function getAddress($request)
     {
-        $dataAdzan = [];
+        $dataAddress = [];
         try {
             $lat = $request->latitude;
             $long = $request->longitude;
-            $month = $request->input('month', date('m'));
-            $year = $request->input('year', date('Y'));
-            $urlAdzan = env('APP_ADZAN_URL') . "/v1/calendar?latitude=$lat&longitude=$long&method=2&month=$month&year=$year";
-            $requestAdzan = Http::get($urlAdzan);
-            if ($requestAdzan->successful()) {
-                $responseAdzan = (object) $requestAdzan->json();
-                $dataAdzan = json_decode(json_encode($responseAdzan->data));
+            $urlAddress = env('APP_TOMTOM_URL') . "/search/2/reverseGeocode/$lat,$long.json?key=" . env('TOMTOM_API_KEY');
+            $requestAddress = Http::get($urlAddress);
+            if ($requestAddress->successful()) {
+                $responseAddress = (object) $requestAddress->json();
+                $dataAddress = json_decode(json_encode($responseAddress->addresses));
             }
-            return $dataAdzan;
+            return $dataAddress;
         } catch (Exception $e) {
             throw $e;
         }

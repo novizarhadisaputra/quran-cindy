@@ -34,7 +34,7 @@ class JuzSeeder extends Seeder
     {
         try {
             DB::beginTransaction();
-            $urlJuz = env('APP_QURAN_JUZ') . "/api/v3/juzs";
+            $urlJuz = env('APP_QURAN_JUZ_URL') . "/api/v3/juzs";
             $requestJuz = Http::retry(3, 60000)->get($urlJuz);
             $countSuccess = 0;
             $countFailed = 0;
@@ -75,30 +75,27 @@ class JuzSeeder extends Seeder
                     if ($lastSurat) {
                         $ayats = $this->ayat
                             ->where('surat_id', $surat->id)
-                            ->where('order', '>=', $lastAyat)->orderBy('order', 'asc')->get();
+                            ->where('order', '>', $lastAyat)->orderBy('order', 'asc')->get();
                         $lastSurat = null;
                         $lastAyat = null;
                     }
                     foreach ($ayats as $ayat) {
-                        (new ConsoleOutput())->writeln($ayat->surat->order . ". Surat " . $ayat->surat->name . " : success");
-                        (new ConsoleOutput())->writeln("Ayat " . $ayat->order . " : success");
-                        (new ConsoleOutput())->writeln("Juz " . $juz->order . " : success");
-                        (new ConsoleOutput())->writeln("=====================================");
-
                         $ayat->update(['juz_id' => $juz->id]);
                         $count++;
 
                         if ($juz->count == $count) {
                             $lastSurat = $ayat->surat->id;
                             $lastAyat = $ayat->order;
-                            (new ConsoleOutput())->writeln("Last Surat : " . $lastSurat);
-                            (new ConsoleOutput())->writeln("Last Ayat  :" . $lastAyat);
+                            (new ConsoleOutput())->writeln("Last Surat : " . $ayat->surat->name);
+                            (new ConsoleOutput())->writeln("Last Ayat  : " . $lastAyat);
+                            (new ConsoleOutput())->writeln("Count " . $count . " : success");
                             (new ConsoleOutput())->writeln("Juz " . $juz->order . " : success");
                             (new ConsoleOutput())->writeln("=====================================");
                             break;
                         }
                     }
                     if ($juz->count == $count) {
+                        $count = 0;
                         break;
                     }
                 }

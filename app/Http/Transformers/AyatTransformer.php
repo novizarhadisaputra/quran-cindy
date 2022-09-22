@@ -30,7 +30,7 @@ class AyatTransformer
         $tmp->id = $model->id;
         $tmp->text = $model->text;
         $tmp->text_latin = $model->text_latin;
-        $tmp->text_translate = $model->text_translate;
+        $tmp->text_translate = strip_tags($model->text_translate);
         $tmp->surat = (object) [
             'id' => $model->surat->id,
             'name' => $model->surat->name,
@@ -38,7 +38,8 @@ class AyatTransformer
         ];
         $tmp->juz = (object) [
             'id' => $model->juz->id,
-            'name' => $model->juz->name,
+            'order' => $model->juz->order,
+            'count' => $model->juz->count,
         ];
         $tmp->tafsir = (object) [
             'id' => $model->tafsir->id,
