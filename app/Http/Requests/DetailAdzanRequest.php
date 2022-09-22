@@ -13,7 +13,7 @@ class DetailAdzanRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class DetailAdzanRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'latitude' => ['required'],
+            'longitude' => ['required'],
+            'month' => ['nullable'],
+            'year' => ['nullable'],
         ];
     }
 }

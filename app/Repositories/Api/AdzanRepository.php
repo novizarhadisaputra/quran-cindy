@@ -44,8 +44,7 @@ class AdzanRepository
     public function show($request)
     {
         try {
-            $ayat = $this->ayat->find($request->id);
-            return $ayat;
+            return $this->index($request);
         } catch (Exception $e) {
             throw $e;
         }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Transformers;
 
-use App\Helpers\GlobalHelper;
 use App\Http\Transformers\ResponseTransformer;
 use stdClass;
 
@@ -11,18 +10,14 @@ class AddressTransformer
 
     public function all($code, $message, $models)
     {
-        $data = [];
-
-        foreach ($models as $model) {
-            $customeData[] = $this->generateItem($model);
-        }
-        return (new ResponseTransformer)->toJson($code, $message, $customeData);
+        $data = $this->data($models);
+        return (new ResponseTransformer)->toJson($code, $message, $data);
     }
 
     public function detail($code, $message, $model)
     {
-        $customeData = $this->generateItem($model);
-        return (new ResponseTransformer)->toJson($code, $message, $model, $customeData);
+        $data = $this->data($model)[0];
+        return (new ResponseTransformer)->toJson($code, $message, $data);
     }
 
     public function generateItem($model)
@@ -37,5 +32,14 @@ class AddressTransformer
         $tmp->address = $model->address->freeformAddress;
 
         return $tmp;
+    }
+
+    public function data($models)
+    {
+        $data = [];
+        foreach ($models as $model) {
+            $data[] = $this->generateItem($model);
+        }
+        return $data;
     }
 }

@@ -31,6 +31,7 @@ class AyatTransformer
         $tmp->text = $model->text;
         $tmp->text_latin = $model->text_latin;
         $tmp->text_translate = strip_tags($model->text_translate);
+        $tmp->order = $model->order;
         $tmp->surat = (object) [
             'id' => $model->surat->id,
             'name' => $model->surat->name,

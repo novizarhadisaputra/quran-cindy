@@ -2,7 +2,6 @@
 
 namespace App\Http\Transformers;
 
-use App\Helpers\GlobalHelper;
 use App\Http\Transformers\ResponseTransformer;
 use stdClass;
 
@@ -11,18 +10,21 @@ class AdzanTransformer
 
     public function all($code, $message, $models)
     {
-        $data = [];
-
-        foreach ($models as $model) {
-            $customeData[] = $this->generateItem($model);
-        }
-        return (new ResponseTransformer)->toJson($code, $message, $customeData);
+        $collection = $this->data($models);
+        return (new ResponseTransformer)->toJson($code, $message, $collection);
     }
 
     public function detail($code, $message, $model)
     {
-        $customeData = $this->generateItem($model);
-        return (new ResponseTransformer)->toJson($code, $message, $model, $customeData);
+        $data = $this->data($model);
+        $collection = null;
+        foreach ($data as $collect) {
+            if ($collect->active) {
+                $collection = $collect;
+                break;
+            }
+        }
+        return (new ResponseTransformer)->toJson($code, $message, $collection);
     }
 
     public function generateItem($model)
@@ -66,5 +68,16 @@ class AdzanTransformer
             ],
         ];
         return $tmp;
+    }
+
+    public function data($models)
+    {
+        $collection = [];
+
+        foreach ($models as $model) {
+            $collection[] = $this->generateItem($model);
+        }
+
+        return $collection;
     }
 }
