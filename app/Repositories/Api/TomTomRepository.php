@@ -4,6 +4,7 @@ namespace App\Repositories\Api;
 
 use Exception;
 use Illuminate\Support\Facades\Http;
+use stdClass;
 
 class TomTomRepository
 {
@@ -19,6 +20,7 @@ class TomTomRepository
             $long = $request->longitude;
             $urlAddress = env('APP_TOMTOM_URL') . "/search/2/reverseGeocode/$lat,$long.json?key=" . env('TOMTOM_API_KEY');
             $requestAddress = Http::get($urlAddress);
+            $dataAddress = new stdClass;
             if ($requestAddress->successful()) {
                 $responseAddress = (object) $requestAddress->json();
                 $dataAddress = json_decode(json_encode($responseAddress->addresses));
@@ -41,12 +43,7 @@ class TomTomRepository
 
     public function show($request)
     {
-        try {
-            $ayat = $this->ayat->find($request->id);
-            return $ayat;
-        } catch (Exception $e) {
-            throw $e;
-        }
+
     }
 
     public function edit($request)

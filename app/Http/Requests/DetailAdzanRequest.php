@@ -26,6 +26,7 @@ class DetailAdzanRequest extends FormRequest
         return [
             'latitude' => ['required'],
             'longitude' => ['required'],
+            'day' => ['required'],
             'month' => ['nullable'],
             'year' => ['nullable'],
         ];

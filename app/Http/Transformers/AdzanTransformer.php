@@ -14,12 +14,12 @@ class AdzanTransformer
         return (new ResponseTransformer)->toJson($code, $message, $collection);
     }
 
-    public function detail($code, $message, $model)
+    public function detail($code, $message, $model, $request = null)
     {
         $data = $this->data($model);
         $collection = null;
         foreach ($data as $collect) {
-            if ($collect->active) {
+            if ($request->day == $collect->date->masehi->day) {
                 $collection = $collect;
                 break;
             }
@@ -36,6 +36,16 @@ class AdzanTransformer
             foreach ($model->timings as $key => $value) {
                 $data = explode(' ', $value);
                 $tmp->timings->{$key} = $data[0];
+            }
+        }
+        $tmp->prays = null;
+        if ($model->timings) {
+            $tmp->prays = new stdClass;
+            foreach ($model->timings as $key => $value) {
+                if (in_array($key, ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'])) {
+                    $data = explode(' ', $value);
+                    $tmp->prays->{$key} = $data[0];
+                }
             }
         }
         $tmp->active = $model->date->gregorian->date === date('d-m-Y') ? true : false;

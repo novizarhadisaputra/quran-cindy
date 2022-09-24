@@ -23,13 +23,23 @@ class AddressTransformer
     public function generateItem($model)
     {
         $tmp = new stdClass();
-        $tmp->country = $model->address->country;
-        $tmp->province = $model->address->countrySubdivision;
-        $tmp->city = $model->address->municipality;
-        $tmp->postalCode = $model->address->postalCode;
-        $tmp->street = $model->address->streetName;
-        $tmp->municipalitySubdivision = $model->address->municipalitySubdivision;
-        $tmp->address = $model->address->freeformAddress;
+        $tmp->country = null;
+        $tmp->province = null;
+        $tmp->city = null;
+        $tmp->postalCode = null;
+        $tmp->street = null;
+        $tmp->municipalitySubdivision = null;
+        $tmp->address = null;
+
+        if (isset($model->address)) {
+            $tmp->country = isset($model->address->country) ? $model->address->country : null;
+            $tmp->province = isset($model->address->countrySubdivision) ? $model->address->countrySubdivision : null;
+            $tmp->city = isset($model->address->municipality) ? $model->address->municipality : null;
+            $tmp->postalCode = isset($model->address->postalCode) ? $model->address->postalCode : null;
+            $tmp->street = isset($model->address->streetName) ? $model->address->streetName : null;
+            $tmp->municipalitySubdivision = isset($model->address->municipalitySubdivision) ? $model->address->municipalitySubdivision : null;
+            $tmp->address = isset($model->address->freeformAddress) ? $model->address->freeformAddress : null;
+        }
 
         return $tmp;
     }
